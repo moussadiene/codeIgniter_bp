@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
@@ -46,5 +48,4 @@ class Migrations extends BaseConfig
 	|
 	*/
 	public $timestampFormat = 'Y-m-d-His_';
-
 }

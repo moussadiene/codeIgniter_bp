@@ -30,8 +30,20 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
 $routes->get('/', 'Home::index');
 
+$routes->get('clients','ClientController::index');
+$routes->get('clients/add','ClientController::ajoutClient');
+$routes->post('clients', 'ClientController::save');
+$routes->put('clients/(:cli)', 'ClientController::update');
+$routes->delete('clients/(:cli)', 'ClientController::delete');
+
+$routes->get('comptes','CompteController::index');
+$routes->get('comptes/add','CompteController::ajoutCompte');
+$routes->post('comptes', 'CompteController::save');
+$routes->put('comptes/(:compte)', 'CompteController::update');
+$routes->delete('comptes/(:compte)', 'CompteController::delete');
 /**
  * --------------------------------------------------------------------
  * Additional Routing
@@ -41,7 +53,12 @@ $routes->get('/', 'Home::index');
  * need it to be able to override any defaults in this file. Environment
  * based routes is one such time. require() additional route files here
  * to make that happen.
- *
+  
+ 
+ *You can supply multiple verbs that a route should match by passing them in as an array to the match method:
+ *$routes->match(['get', 'put'], 'products', 'Product::feature');
+
+
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
