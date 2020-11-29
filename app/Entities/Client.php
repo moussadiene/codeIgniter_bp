@@ -1,4 +1,6 @@
-<?php namespace App\Entities;
+<?php
+
+namespace App\Entities;
 
 use CodeIgniter\Entity;
 use CodeIgniter\I18n\Time;
@@ -6,13 +8,15 @@ use CodeIgniter\I18n\Time;
 class Client extends Entity
 {
     // protected $id;
-    // protected $matricule;
     // protected $nom;
     // protected $prenom;
     // protected $cni;
+    // protected $sexe;
+
     // protected $adresse;
     // protected $telephone;
-
+    // protected $created_at;
+    // protected $update_at;
     protected $attributes = [
         'id' => null,
         'matricule' => null,        // Represents a username
@@ -26,38 +30,31 @@ class Client extends Entity
         'updated_at' => null,
     ];
 
-    public function __get($key)
-    {
-        if (property_exists($this, $key))
-        {
-            return $this->$key;
-        }
-    }
 
-    public function __set($key, $value)
-    {
-        if (property_exists($this, $key))
-        {
-            $this->$key = $value;
-        }
-    }
 
-    public function setCreatedAt(string $dateString)
+    public function setCreatedAt()
     {
-        $this->attributes['created_at'] = new Time($dateString, 'UTC');
+        $this->attributes['created_at'] = date('Y-m-d');
+        $this->attributes['updated_at'] = date('Y-m-d');
 
         return $this;
     }
 
-    public function getCreatedAt(string $format = 'Y-m-d H:i:s')
+    public function setUpdateAt()
+    {
+        $this->attributes['updated_at'] = date('Y-m-d');
+
+        return $this;
+    }
+
+    public function getCreatedAt(string $format = 'Y-m-d H')
     {
         // Convert to CodeIgniter\I18n\Time object
         $this->attributes['created_at'] = $this->mutateDate($this->attributes['created_at']);
 
         $timezone = $this->timezone ?? app_timezone();
 
-        $this->attributes['created_at']->setTimezone($timezone);
+        //$this->attributes['created_at']->setTimezone($timezone);
 
-        return $this->attributes['created_at']->format($format);
     }
 }

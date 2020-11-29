@@ -7,6 +7,8 @@
 	<meta name="description" content="The small framework with powerful features">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 
 	<!-- STYLES -->
 
@@ -72,10 +74,13 @@
 		}
 
 		header li.menu-item a:hover,
-		header li.menu-item a:focus {
+		header li.menu-item a:focus,
+		.active {
 			background-color: rgba(221, 72, 20, .2);
 			color: rgba(221, 72, 20, 1);
 		}
+
+
 
 		header .logo {
 			float: left;
@@ -246,9 +251,9 @@
 				</li>
 
 				<li class="menu-item hidden"><a href="#">Home</a></li>
-				<li class="menu-item hidden"><a href="#">Client</a>
+				<li class="menu-item hidden "><a href="/clients" class="active">Client</a>
 				</li>
-				<li class="menu-item hidden"><a href="#">Compte</a></li>
+				<li class="menu-item hidden"><a href="/comptes">Compte</a></li>
 
 			</ul>
 		</div>
@@ -259,8 +264,48 @@
 	<!-- CONTENT -->
 
 	<section>
+		<a href="/clients/add" type="btn" class="btn btn-primary mb-2">Nouveau Client</a>
+
+		<div class="card">
+			<div class="card-header">
+				Liste Client
+			</div>
+			<div class="card-body">
+				<table id="example" class="table table-striped table-bordered table-sm" style="width:100%">
+					<thead>
+						<tr>
+							<th>Cni</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Sexe</th>
+							<th>Adresse</th>
+							<th>Telephone</th>
+							<th>CreatedAt</th>
+							<th>UpdatedAt</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($clients as $key => $value) { ?>
+
+							<tr>
+								<td><?= $value->cni ?></td>
+								<td><?= $value->nom ?></td>
+								<td><?= $value->prenom ?></td>
+								<td><?= $value->sexe ?></td>
+								<td><?= $value->adresse ?></td>
+								<td><?= $value->telephone ?></td>
+								<td><?= $value->created_at ?></td>
+								<td><?= $value->updated_at ?></td>
+							</tr>
+
+						<?php } ?>
 
 
+					</tbody>
+
+				</table>
+			</div>
+		</div>
 	</section>
 
 	<!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
@@ -284,6 +329,10 @@
 </footer-->
 
 	<!-- SCRIPTS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
 
 	<script>
 		function toggleMenu() {
@@ -293,6 +342,9 @@
 				menuItem.classList.toggle("hidden");
 			}
 		}
+		$(document).ready(function() {
+			$('#example').DataTable();
+		});
 	</script>
 
 	<!-- -->

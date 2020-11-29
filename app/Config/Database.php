@@ -34,8 +34,8 @@ class Database extends \CodeIgniter\Database\Config
 	public $default = [
 		'DSN'      => '',
 		'hostname' => 'localhost',
-		'username' => 'djine',
-		'password' => 'mosila21',
+		'username' => 'root',
+		'password' => '',
 		'database' => 'codeigniter_bp',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
@@ -87,7 +87,6 @@ class Database extends \CodeIgniter\Database\Config
 	{
 		parent::__construct();
 
-		$forge = \Config\Database::forge();
 
 		// Ensure that we always set the database group to 'tests' if
 		// we are currently running an automated test suite, so that

@@ -7,7 +7,7 @@ use CodeIgniter\Database\Migration;
 class Client extends Migration
 {
 
-	protected $DBGroup = 'alternate_db_group';
+	// protected $DBGroup = 'alternate_db_group';
 
 	public function up()
 	{
@@ -19,50 +19,55 @@ class Client extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true,
 			],
-			'matricule'       => [
+
+			'nom' => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 				'null'           => false,
 			],
-			'nom' => [
-				'type'           => 'TEXT',
-				'constraint'     => '100',
-				'null'           => true,
-			],
 			'prenom' => [
-				'type'           => 'TEXT',
+				'type'           => 'VARCHAR',
 				'constraint'     => '100',
-				'null'           => true,
+				'null'           => false,
 			],
 			'sexe' => [
-				'type'           => 'TEXT',
+				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 				'null'           => true,
 			],
 			'cni' => [
-				'type'           => 'TEXT',
+				'type'           => 'VARCHAR',
 				'constraint'     => '100',
-				'null'           => true,
+				'null'           => false,
 			],
 			'adresse' => [
-				'type'           => 'TEXT',
+				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 				'null'           => true,
 			],
 			'telephone' => [
-				'type'           => 'TEXT',
+				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 				'null'           => true,
 			],
+			'created_at' => [
+				'type'           => 'DATE',
+				'null'           => true,
+			],
+			'updated_at' => [
+				'type'           => 'DATE',
+				'null'           => true,
+			],
 		]);
-		$this->forge->addKey('id', true);
+		//$this->forge->addKey('id', true);
+		$this->forge->addPrimarykey('id');
 		$this->forge->createTable('client');
 
-		$this->db->disableForeignKeyChecks();
+		//$this->db->disableForeignKeyChecks();
 
 		// Migration rules would go here..
 
-		$this->db->enableForeignKeyChecks();
+		//$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()

@@ -208,9 +208,9 @@
 			</li>
 			
 			<li class="menu-item hidden"><a href="#">Home</a></li>
-			<li class="menu-item hidden"><a href="#">Client</a>
+			<li class="menu-item hidden"><a href="/clients">Client</a>
 			</li>
-			<li class="menu-item hidden"><a href="#">Compte</a></li>
+			<li class="menu-item hidden"><a href="/comptes">Compte</a></li>
 			
 		</ul>
 	</div>
