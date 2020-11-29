@@ -28,6 +28,8 @@ class Compte extends Entity
         'fraisOuverture' => null,
         'dateDebut' => null,
         'dateFin' => null,
+        'created_at' => null,
+        'updated_at' => null,
 
     ];
 
@@ -51,4 +53,31 @@ class Compte extends Entity
 
     //     return $this->attributes['created_at']->format($format);
     // }
+
+    public function setCreatedAt()
+    {
+        $this->attributes['created_at'] = date('Y-m-d');
+        $this->attributes['updated_at'] = date('Y-m-d');
+        $this->attributes['dateOuverture'] = date('Y-m-d');
+
+        return $this;
+    }
+
+    public function setUpdateAt()
+    {
+        $this->attributes['updated_at'] = date('Y-m-d');
+
+        return $this;
+    }
+
+    public function getCreatedAt(string $format = 'Y-m-d H')
+    {
+        // Convert to CodeIgniter\I18n\Time object
+        $this->attributes['created_at'] = $this->mutateDate($this->attributes['created_at']);
+
+        $timezone = $this->timezone ?? app_timezone();
+
+        //$this->attributes['created_at']->setTimezone($timezone);
+
+    }
 }

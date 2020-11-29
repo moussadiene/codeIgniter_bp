@@ -250,7 +250,7 @@
 					<button onclick="toggleMenu();">&#9776;</button>
 				</li>
 
-				<li class="menu-item hidden"><a href="#">Home</a></li>
+				<li class="menu-item hidden"><a href="/">Home</a></li>
 				<li class="menu-item hidden "><a href="/clients" class="active">Client</a>
 				</li>
 				<li class="menu-item hidden"><a href="/comptes">Compte</a></li>
@@ -280,8 +280,7 @@
 							<th>Sexe</th>
 							<th>Adresse</th>
 							<th>Telephone</th>
-							<th>CreatedAt</th>
-							<th>UpdatedAt</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -294,8 +293,8 @@
 								<td><?= $value->sexe ?></td>
 								<td><?= $value->adresse ?></td>
 								<td><?= $value->telephone ?></td>
-								<td><?= $value->created_at ?></td>
-								<td><?= $value->updated_at ?></td>
+								<!--td><?= $value->created_at ?></td-->
+								<!--td><?= $value->updated_at ?></td-->
 							</tr>
 
 						<?php } ?>

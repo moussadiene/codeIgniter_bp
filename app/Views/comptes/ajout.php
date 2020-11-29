@@ -7,6 +7,8 @@
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 
     <!-- STYLES -->
 
@@ -72,10 +74,13 @@
         }
 
         header li.menu-item a:hover,
-        header li.menu-item a:focus {
+        header li.menu-item a:focus,
+        .active {
             background-color: rgba(221, 72, 20, .2);
             color: rgba(221, 72, 20, 1);
         }
+
+
 
         header .logo {
             float: left;
@@ -245,28 +250,144 @@
                     <button onclick="toggleMenu();">&#9776;</button>
                 </li>
 
-                <li class="menu-item hidden"><a href="#">Home</a></li>
-                <li class="menu-item hidden"><a href="/clients">Client</a>
+                <li class="menu-item hidden"><a href="/">Home</a></li>
+                <li class="menu-item hidden "><a href="/clients">Client</a>
                 </li>
-                <li class="menu-item hidden"><a href="/comptes">Compte</a></li>
+                <li class="menu-item hidden"><a href="/comptes" class="active">Compte</a></li>
 
             </ul>
         </div>
 
-        <!--div class="heroe">
-
-		<h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
-
-		<h2>The small framework with powerful features</h2>
-
-	</!--div-->
 
     </header>
 
     <!-- CONTENT -->
 
-    <section>
 
+
+    <section>
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb textè-center">
+                <li class="breadcrumb-item"><a href="/comptes">Compte</a></li>
+                <li class="breadcrumb-item " aria-current="page">Nouveau Compte</li>
+            </ol>
+        </nav>
+
+        <div class="card">
+            <div class="card-header">
+                Liste Compte
+            </div>
+            <div class="card-body ">
+                <form class="col-12" method="POST" action="/comptes">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="staticEmail" class="col-form-label">Numero</label>
+                            <input type="numero" name="numero" class="form-control" id="numero" placeholder="Numero" required>
+
+                        </div>
+                        <div class="form-group col-lg-6 ">
+                            <label for="inlineFormCustomSelect" class="col-form-label">Client</label>
+                            <select class="custom-select form-control" id="inlineFormCustomSelect" name="client_id">
+                                <option selected>Choose...</option>
+
+                                <?php foreach ($clients as $key => $value) { ?>
+                                    <option value="<?php echo $value->id; ?>"><?= $value->cni . " - " . $value->nom . " - " . $value->prenom ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <hr class="col-lg-11">
+                        <div class="form-group col-lg-6 ">
+                            <label for="inputPassword" class="col-form-label">Type Compte</label>
+                            <br>
+                            <div class="col-2"></div>
+                            <div class="col-9" id="option_id">
+                                <div class="radio radio-info">
+                                    <input type="radio" name="typeCompte" id="courant" value="courant" class="radio-single " checked="checked" />
+                                    <label for="inlineRadio1"> Courant </label>
+                                </div>
+                                <div class="radio ">
+                                    <input type="radio" name="typeCompte" id="epargne" value="epargne" />
+                                    <label for="inlineRadio2"> Simple Xeewel </label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="typeCompte" id="bloque" value="bloquer" />
+                                    <label for="inlineRadio2"> Bloquer </label>
+                                </div>
+
+                            </div>
+                            <hr class="col-1">
+
+                        </div>
+                        <div class="form-group col-lg-6 " id="form_courant">
+                            <label for="">Agios *</label>
+                            <input type="number" name="agios" id="agios" class="form-control" value="20000" readonly />
+
+                        </div>
+
+                        <div class="form-group col-lg-6 ok" id="form_epargne">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="">Remuneration *</label>
+                                    <input type="number" name="remuneration" id="remuneration" class="form-control" value="10000" readonly />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="">Frais d'ouverture *</label>
+                                    <input type="number" name="fraisOuverture" id="fraisOuverture" class="form-control" value="15000" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-12" id="form_bloque">
+                            <div class="row">
+                                <div class="col-lg-6"></div>
+                                <div class="col-lg-6 row">
+                                    <div class="form-group col-6">
+                                        <label for="">Date Debut*</label>
+                                        <input type="date" name="dateDebut" id="dateDebut" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="">Date Fin*</label>
+                                        <input type="date" name="dateFin" id="dateFin" class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <button type="reset" class="btn btn-dark btn-sm">Anuller</button>&nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-success btn-sm">Enregistrer</button>
+                        </div>
+                    </div>
+
+                    <!--div class="form-group col-6 courant">
+                            <label for="inputPassword" class="col-form-label">agios</label>
+                            <input type="text" name="telephone" class="form-control" id="telephone" placeholder="Telephone" required>
+                        </!--div>
+                        <div class="form-group col-6 bloquer epargne">
+                            <label for="inputPassword" class="col-form-label">renumeration</label>
+                            <input type="text" name="telephone" class="form-control" id="telephone" placeholder="Telephone" required>
+                        </div>
+                        <div class="form-group col-6 bloquer epargne">
+                            <label for="inputPassword" class="col-form-label">Frais Ouverture</label>
+                            <input type="text" name="telephone" class="form-control" id="telephone" placeholder="Telephone" required>
+                        </div>
+                        <div class="form-group col-6 bloquer">
+                            <label for="inputPassword" class="col-form-label">dateDebut</label>
+                            <input type="text" name="telephone" class="form-control" id="telephone" placeholder="Telephone" required>
+                        </div>
+                        <div class="form-group col-6 bloquer">
+                            <label for="inputPassword" class="col-form-label">dateFin</label>
+                            <input type="text" name="telephone" class="form-control" id="telephone" placeholder="Telephone" required>
+                        </div>
+                        <div-- class="form-group col-12">
+                            <button type="reset" class="btn btn-dark">Anuller</button>
+                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                        </div-->
+
+
+                </form>
+            </div>
+        </div>
 
     </section>
 
@@ -291,6 +412,10 @@
 </footer-->
 
     <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
 
     <script>
         function toggleMenu() {
@@ -300,6 +425,38 @@
                 menuItem.classList.toggle("hidden");
             }
         }
+        $(document).ready(function() {
+
+            $('#example').DataTable();
+
+            $('#form_courant').show();
+            $('#form_epargne').hide();
+            $('#form_bloque').hide();
+            $('#courant').click(function() {
+                if ($(this).is(':checked') == true) {
+                    $('#form_courant').show();
+                    $('#form_epargne').hide();
+                    $('#form_bloque').hide();
+                }
+            });
+
+            $('#epargne').click(function() {
+                if ($(this).is(':checked') == true) {
+                    $('#form_courant').hide();
+                    $('#form_epargne').show();
+                    $('#form_bloque').hide();
+                }
+            });
+
+            $('#bloque').click(function() {
+                if ($(this).is(':checked') == true) {
+                    $('#form_courant').hide();
+                    $('#form_epargne').hide();
+                    $('.ok').show();
+                    $('#form_bloque').show();
+                }
+            });
+        });
     </script>
 
     <!-- -->

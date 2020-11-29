@@ -26,11 +26,11 @@ class ClientController extends BaseController
         $data = $this->request->getPost();
 
 
-        $user = new Client();
-        $user->fill($data);
+        $client = new Client();
+        $client->fill($data);
 
-        $user->setCreatedAt();
-        $data['ok'] = $clientModel->save($user);
+        $client->setCreatedAt();
+        $data['ok'] = $clientModel->save($client);
         $data['clients'] = $clientModel->findAll();
 
 

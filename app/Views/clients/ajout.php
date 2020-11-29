@@ -317,8 +317,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button type="reset" class="btn btn-dark">Anuller</button>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                        <button type="reset" class="btn btn-dark btn-sm">Anuller</button>&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-success btn-sm">Enregistrer</button>
                     </div>
                 </form>
             </div>

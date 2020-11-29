@@ -33,7 +33,7 @@ class Compte extends Migration
 			],
 			'dateOuverture' => [
 				'type'           => 'DATETIME',
-				'null'           => false,
+				'null'           => null,
 			],
 			'rib' => [
 				'type'           => 'VARCHAR',
@@ -65,6 +65,14 @@ class Compte extends Migration
 				'null'           => true,
 			],
 			'dateFin' => [
+				'type'           => 'DATE',
+				'null'           => true,
+			],
+			'created_at' => [
+				'type'           => 'DATE',
+				'null'           => true,
+			],
+			'updated_at' => [
 				'type'           => 'DATE',
 				'null'           => true,
 			],

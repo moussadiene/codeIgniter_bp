@@ -36,9 +36,9 @@ class Client extends Entity
     {
         $this->attributes['created_at'] = date('Y-m-d');
         $this->attributes['updated_at'] = date('Y-m-d');
-
         return $this;
     }
+
 
     public function setUpdateAt()
     {
